@@ -1,5 +1,8 @@
 # Golang Notes
 
+## Main
+Go is a call by value language. Every time you pass a parameter to a function, Go makes a copy of the value that’s passed in. Passing a slice to the append function actually passes a copy of the slice to the function.
+
 ## Run and install
 ```shell
 go run main.go //will run the code. The executable file will be deleted after exit
@@ -102,6 +105,10 @@ for index, value := range scores {
 ```
 
 ## Slices
+A slice isn’t comparable. It is a compile-time error to use == to see if two slices are identical or != to see if they are different. The only thing you can compare a slice with is nil.
+```golang
+var x []int
+```
 ```golang
 scores := []int{1,4,293,4,9}
 ```
@@ -116,8 +123,41 @@ checks := make([]bool, 10)
 var names []string
 scores := make([]int, 0, 20)
 ```
+```golang
+var x = []int{1,2,3}
+x = append(x, 4)
+x = append(x,5,6,7)
+```
+Add one slice is appended onto another by using the … operator to expand the source slice into individual values
+```golang
+var x = []int{1,2,3}
+y := []int{20,30,40}
+x = append(x, y...)
+```
 
 ## Maps
+Maps are not comparable. You can check if they are equal to nil, but you cannot check if two maps have identical keys and values using == or differ using !=
+```golang
+var nilMap map[string]int
+```
+```golang
+totalWins := map[string]int{}
+```
+```golang
+teams := map[string][]string {
+	"Orcas": []string{"Fred", "Ralph", "Bijou"},
+	"Lions": []string{"Sarah", "Peter", "Billie"},
+	"Kittens": []string{"Waldo", "Raul", "Ze"},
+}
+```
+```golang
+m := map[string]int{
+	"hello": 5,
+	"world": 0,
+}
+v, ok := m["hello"]
+fmt.Println(v, ok)
+```
 ```golang
 func main() {
 	lookup := make(map[string]int)
@@ -162,6 +202,14 @@ commits := map[string]int{
     "gri": 1908,
     "adg": 912,
 }
+```
+The delete function takes a map and a key and then removes the key-value pair with the specified key. If the key isn’t present in the map or if the map is nil, nothing happens. The delete function doesn’t return a value.
+```golang
+m := map[string]int{
+	"hello": 5,
+	"world": 10,
+}
+delete(m, "hello")
 ```
 
 ## Sorting
