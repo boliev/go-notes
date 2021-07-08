@@ -58,6 +58,29 @@ goku := new(Saiyan)
 goku := &Saiyan{}
 ```
 
+```golang
+type person struct {
+	name string
+	age  int
+	pet  string
+}
+
+var fred person
+bob := person{}
+```
+```golang
+julia := person{
+	"Julia",
+	40,
+	"cat",
+}
+
+beth := person{
+	age:  30,
+	name: "Beth",
+}
+```
+
 ### Composition
 ```golang
 type Person struct {
