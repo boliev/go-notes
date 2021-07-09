@@ -21,6 +21,11 @@ Or we can use [golangci-lint](https://golangci-lint.run/usage/install/)
 ```shell
 golangci-lint run
 ```
+Check for shadowing
+```shell
+go install golang.org/x/tools/go/analysis/passes/shadow/cmd/shadow@latest
+shadow ./...
+```
 
 ## Variables
 ```golang
